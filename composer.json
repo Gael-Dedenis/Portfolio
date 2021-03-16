@@ -28,7 +28,8 @@
 
     "require": {
       "php": "7.3",
-      "twig/twig": "^3.0.3"
+      "twig/twig": "^3.0.3",
+      "swiftmailer/swiftmailer": "^6.2.3"
     },
 
     "require-dev": {
