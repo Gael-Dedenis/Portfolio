@@ -1,25 +1,46 @@
 {% extends "layouts/layout.twig" %}
 
 {% block title %}
+
     Développeur web Gaël Dedenis portfolio.
+
 {% endblock %}
 
 {% block header %}
+
     <header class="my-4">
-        {{ include ("layouts/navbar_visitor.twig") }}
+
+        {{ include ("layouts/navbar.twig") }}
+
     </header>
+
 {% endblock %}
 
 {% block content %}
-        <main class="container">
+ 
+        <main class="container-fluid bg-light p-5">
 
-            <h1>Développeur Web</h1>
+            {{ include ("fronts/parts/accueil.twig") }}
+
+            {{ include ("fronts/parts/services.twig") }}
+
+            {{ include ("fronts/parts/portfolio.twig") }}
 
         </main>
-    {% endblock %}
 
-    {% block footer %}
-        <footer class="">
-            <p>Portfolio réaliser par Gaël Dedenis dans le cadre de sa formation pour son projet 5.</p>
-        </footer>
-    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+    <footer class="text-light text-center p-4">
+
+        <nav class="nav justify-content-center">
+            <a class="nav-link link-light active" aria-current="page" href="#accueil">Accueil</a>
+            <a class="nav-link link-light" href="#service">Services</a>
+            <a class="nav-link link-light" href="{{ url('portfolio') }}">Portfolio</a>
+            <a class="nav-link link-light" href="#contact">Contact</a>
+        </nav>
+
+        <p class="my-4">Portfolio réaliser par Gaël Dedenis dans le cadre de sa formation pour son projet 5.</p>
+
+    </footer>
+{% endblock %}
