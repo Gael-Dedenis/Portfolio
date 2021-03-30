@@ -2,6 +2,8 @@
 
     namespace App;
 
+    require_once "../config/config.php";
+
     use Twig\Environment;
     use Twig\Loader\FilesystemLoader;
     use Twig\Extension\DebugExtension;
