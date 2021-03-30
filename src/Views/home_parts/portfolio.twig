@@ -1,4 +1,4 @@
-<article class="container my-4 rounded border border-3 border-dark bg-light">
+<article id="portfolio" class="container my-4 rounded border border-3 border-dark bg-light">
 
     <h2 class="my-5 text-center text-decoration-underline fw-bold">Derniers projets réalisés</h2>
 
@@ -15,26 +15,26 @@
 
         <div class="carousel-inner">
             <div class="carousel-item text-center active">
-                <a href="https://blog-jean-forteroche.gael-dedenis.fr/">
-                    <img src="../public/images/projets/blog_jforteroche.jpg" alt="Jean Forteroche, auteur d'un roman publier sur son blog." title="Blog de l'écrivain Jean Forteroche, développer en php uniquement sans framework.">
+                <a href="{{ lastProjects['0'].Lien }}" target="_blank">
+                    <img src="{{ lastProjects['0'].Image }}" alt="{{ lastProjects['0'].Description }}" title="{{ lastProjects['0'].Description }}">
                 </a>
             </div>
 
             <div class="carousel-item text-center">
-                <a href="https://loco-bikes.gael-dedenis.fr/">
-                    <img src="../public/images/projets/locobike.jpg" alt="Un vélo debout roulant sur une feuille représentant un chemin." title="Loc'o'Bike, votre site de réservation de vélo en ligne !">
+                <a href="{{ lastProjects['1'].Lien }}" target="_blank">
+                    <img src="{{ lastProjects['1'].Image }}" alt="{{ lastProjects['1'].Description }}" title="{{ lastProjects['1'].Description }}">
                 </a>
             </div>
 
             <div class="carousel-item text-center">
-                <a href="https://www.ireki-tourisme.gael-dedenis.fr/">
-                    <img src="../public/images/projets/ireki.jpg" alt="Le lac au pied d'une montagne proche de la ville d'Ireki." title="Site officiel de l'office de tourisme d'Ireki.">
+                <a href="{{ lastProjects['2'].Lien }}" target="_blank">
+                    <img src="{{ lastProjects['2'].Image }}" alt="{{ lastProjects['2'].Description }}" title="{{ lastProjects['2'].Description }}">
                 </a>
             </div>
 
-            <div class="carousel-item text-center">
-                <a href="">
-                    <img src="../public/images/moi.jpg" alt="Gaël Dedenis, développeur web junior.">
+            <div class="carousel-item text-center" target="_blank">
+                <a href="{{ lastProjects['3'].Lien }}">
+                    <img src="{{ lastProjects['3'].Image }}" alt="{{ lastProjects['3'].Description }}" title="{{ lastProjects['3'].Description }}">
                 </a>
             </div>
 
