@@ -1,0 +1,43 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %}
+
+    Développeur web Gaël Dedenis portfolio.
+
+{% endblock %}
+
+{% block header %}
+
+    <header class="my-4">
+
+        {{ include ("layouts/navbar.twig") }}
+
+    </header>
+
+{% endblock %}
+
+{% block content %}
+
+    <main class="container-fluid bg-light p-5">
+
+        {{ include ("home_parts/accueil.twig") }}
+
+        {{ include ("home_parts/services.twig") }}
+
+        {{ include ("home_parts/portfolio.twig") }}
+
+        {{ include ("home_parts/contact.twig") }}
+
+    </main>
+
+{% endblock %}
+
+{% block footer %}
+
+    <footer class="text-light text-center p-4">
+
+        {{ include ("layouts/footer.twig") }}
+
+    </footer>
+
+{% endblock %}
