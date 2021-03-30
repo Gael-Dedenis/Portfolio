@@ -84,13 +84,9 @@
          * @return mixed
          */
         public function getUser() {
-            switch($this->session["user"]["status"]) {
-                case "1":
-                    return "admin";
-                    break;
-
-                default:
-                    return false;
+            if (isset($this->session) && !empty($this->session["id"]) && !empty($this->session["mail"])) {
+                return true;
             }
+            return false;
         }
     }
