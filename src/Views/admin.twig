@@ -12,7 +12,7 @@
 
 {% block content %}
 
-    <main class="container p-2 my-3 rounded bg-light text-dark">
+    <main class="container p-4 my-3 rounded bg-light text-dark">
 
         <h1 class="my-5 text-center text-decoration-underline fw-bold">Panneau d'administration</h1>
 
@@ -24,7 +24,7 @@
             <ul class="container list-group">
                 {% for project in projects %}
                     <li class="list-group-item p-3 col-lg-4 offset-lg-4">
-                        <a href="{{ url('projects!modify', {'id': project.id}) }}" class="link-dark">{{ project.Titre }}</a>
+                        <a href="{{ url('projects!modify', {'id': project.id}) }}" class="link-dark">{{ project.titre }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -38,7 +38,7 @@
 
                     {% for project in projects %}
                         <option>
-                            {{ project.Titre }}
+                            {{ project.titre }}
                         </option>
                     {% endfor %}
 
