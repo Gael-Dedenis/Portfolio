@@ -1,0 +1,65 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %}
+    Administration - Modifier un projet
+{% endblock %}
+
+{% block header %}
+
+    {{ include ("layouts/navbar.twig") }}
+
+{% endblock %}
+
+{% block content %}
+
+    <main class="container p-4 my-3 rounded bg-light ">
+
+        <section class="Container my-3 border border-dark rounded">
+
+            <div class="col-lg-6 mx-auto">
+
+                <h1 class="my-5 text-center text-decoration-underline fw-bold">Modifier un projet</h1>
+
+                <form method="POST" action="{{ url('projects!modify') }}" enctype="multipart/form-data" class="form-group">
+
+                    <div class="form-group">
+                        <label for="titre" class="col-sm-4 col-form-label">Titre :</label>
+                        <input type="text" class="form-control" id="titre" name="titre" value="{{ projectsToModify.titre|raw }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lien" class="col-sm-4 col-form-label">Lien vers le projet :</label>
+                        <input type="text" class="form-control" id="lien" name="lien" value="{{ projectsToModify.lien|raw }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lien_image" class="col-sm-5 col-form-label">Lien vers l'image du projet :</label>
+                        <div class="input-group">
+                            <span class="input-group-text">../public/images/projets/</span>
+                            <input type="text" class="form-control" id="lien_image" name="lien_image" value="{{ projectsToModify.lien_image|raw }}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image" class="col-sm-4 col-form-label">Image du projet :</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="col-sm-5 col-form-label">Description du projet :</label>
+                        <textarea id="description" class="form-control" name="description" rows="6" cols="120"> {{ projectsToModify.description|raw }} </textarea>
+                    </div>
+
+                    <div class="container-fluid text-center">
+                        <button type="submit" class="my-4 btn-lg btn-outline-secondary fw-bold">Ajouter</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+{% endblock %}
