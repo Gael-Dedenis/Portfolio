@@ -49,6 +49,56 @@
 
         </section>
 
+        <h2 class="my-5 text-center text-decoration-underline fw-bold">Gestion données utilisateur</h2>
+
+        <section class="Container my-3 border border-2 border-dark rounded">
+
+            <ul class="container list-group">
+
+                <li class="list-group-item p-3">
+
+                    <p>Adresse mail actuelle = {{ user.mail }}</p>
+
+                    <form method="POST" action="{{ url('user!modify') }}" class="form-group text-center">
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="mail" class="col-sm-8 col-form-label">Votre nouvelle adresse mail</label>
+                            <input type="mail" class="form-control" id="mail" name="mail" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-secondary my-3">Changer de mail</button>
+                    </form>
+
+                </li>
+
+                <li class="list-group-item p-3">
+
+                    <form method="POST" action="{{ url('user!modify') }}" class="form-group text-center">
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="oldpass" class="col-sm-8 col-form-label">Votre ancien mot de passe</label>
+                            <input type="password" class="form-control" id="oldpass" name="oldpass" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="pass" class="col-sm-8 col-form-label">Votre nouveau mot de passe</label>
+                            <input type="password" class="form-control" id="pass" name="pass" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="pass_confirm" class="col-sm-8 col-form-label">Confirmez votre nouveau mot de passe</label>
+                            <input type="password" class="form-control" id="pass_confirm" name="pass_confirm" autocomplete="off" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-secondary my-3">Changer de mot de passe</button>
+                    </form>
+
+                </li>
+
+            </ul>
+
+        </section>
+
     </main>
 
 {% endblock %}
