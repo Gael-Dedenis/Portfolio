@@ -20,7 +20,7 @@
          * @throws SyntaxError
          */
         public function defaultMethod() {
-            if ($this->getUser()) {
+            if ($this->getUser() === false) {
                 $this->redirect("auth");
             }
 
