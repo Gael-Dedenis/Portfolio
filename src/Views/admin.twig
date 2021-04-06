@@ -1,0 +1,104 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %}
+    Administration
+{% endblock %}
+
+{% block header %}
+
+    {{ include ("layouts/navbar.twig") }}
+
+{% endblock %}
+
+{% block content %}
+
+    <main class="container p-4 my-3 rounded bg-light text-dark">
+
+        <h1 class="my-5 text-center text-decoration-underline fw-bold">Panneau d'administration</h1>
+
+        <section class="Container my-3 border border-2 border-dark rounded">
+
+            <a href="{{ url('projects!create') }}" class="link-dark"><h3 class="my-5 fw-bold text-center">Ajouter un projet</h3></a>
+
+            <h3 class="my-5 fw-bold text-center">Modifier un projet</h3>
+            <ul class="container list-group">
+                {% for project in projects %}
+                    <li class="list-group-item p-3 col-lg-4 offset-lg-4">
+                        <a href="{{ url('projects!modify', {'id': project.id}) }}" class="link-dark">{{ project.titre }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h3 class="my-5 fw-bold text-center">Supprimer un projet</h3>
+            <form method="POST" action="{{ url('projects!delete') }}" class="form-group col-lg-4 offset-lg-4 text-center">
+
+                <label for="projectSelect" class="mb-2">Projet à supprimer</label>
+
+                <select id="projectSelect" name="projectSelect" class="form-control my-2 ">
+
+                    {% for project in projects %}
+                        <option>
+                            {{ project.titre }}
+                        </option>
+                    {% endfor %}
+
+                </select>
+
+                <button type="submit" class="btn btn-outline-secondary my-3">Supprimer le projet</button>
+            </form>
+
+        </section>
+
+        <h2 class="my-5 text-center text-decoration-underline fw-bold">Gestion données utilisateur</h2>
+
+        <section class="Container my-3 border border-2 border-dark rounded">
+
+            <ul class="container list-group">
+
+                <li class="list-group-item p-3">
+
+                    <p>Adresse mail actuelle = {{ user.mail }}</p>
+
+                    <form method="POST" action="{{ url('user!modify') }}" class="form-group text-center">
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="mail" class="col-sm-8 col-form-label">Votre nouvelle adresse mail</label>
+                            <input type="mail" class="form-control" id="mail" name="mail" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-secondary my-3">Changer de mail</button>
+                    </form>
+
+                </li>
+
+                <li class="list-group-item p-3">
+
+                    <form method="POST" action="{{ url('user!modify') }}" class="form-group text-center">
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="oldpass" class="col-sm-8 col-form-label">Votre ancien mot de passe</label>
+                            <input type="password" class="form-control" id="oldpass" name="oldpass" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="pass" class="col-sm-8 col-form-label">Votre nouveau mot de passe</label>
+                            <input type="password" class="form-control" id="pass" name="pass" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-group col-8 offset-2">
+                            <label for="pass_confirm" class="col-sm-8 col-form-label">Confirmez votre nouveau mot de passe</label>
+                            <input type="password" class="form-control" id="pass_confirm" name="pass_confirm" autocomplete="off" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-secondary my-3">Changer de mot de passe</button>
+                    </form>
+
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+{% endblock %}

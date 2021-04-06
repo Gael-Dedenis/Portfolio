@@ -12,7 +12,7 @@
      * Class MainController
      * @package App\Controllers
      */
-    abstract class MainController
+    abstract class MainController extends FilesController
     {
         /**
          * @var Environment
@@ -43,6 +43,8 @@
             $this->post    = filter_input_array(INPUT_POST);
             $this->get     = filter_input_array(INPUT_GET);
             $this->session = filter_var_array($_SESSION);
+
+            parent::__construct();
         }
 
         /**
@@ -84,13 +86,9 @@
          * @return mixed
          */
         public function getUser() {
-            switch($this->session["user"]["status"]) {
-                case "1":
-                    return "admin";
-                    break;
-
-                default:
-                    return false;
+            if (isset($this->session) && !empty($this->session["user"])) {
+                return true;
             }
+            return false;
         }
     }

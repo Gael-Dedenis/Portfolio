@@ -1,0 +1,68 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %}
+    Se connecter au Portfolio de Gaël Dedenis
+{% endblock %}
+
+{% block header %}
+
+    <header class="my-4">
+
+        <div class="navbar justify-content-center sticky-top">
+            <a class="nav-link link-light" href="{{ url('home') }}">Accueil</a>
+            <a class="nav-link link-light" href="{{ url('auth') }}">Se connecter</a>
+        </div>
+
+    </header>
+
+{% endblock %}
+
+{% block content %}
+
+    <main class="container p-5 margin-hight rounded bg-light ">
+
+        <h1 class="my-3 text-center text-decoration-underline fw-bold">Se Connecter</h1>
+
+        {% if erreurs is not empty %}
+            <div class="col-lg-6 offset-lg-3 p-2 border border-danger rounded text-danger text-center">
+                {{ erreurs }}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url('auth') }}" class="form-group">
+
+            <div class="form-group col-lg-6 offset-lg-3">
+
+                <label for="mail" class="col-sm-4 col-form-label">Email</label>
+                <input type="mail" class="form-control" id="mail" name="mail" required>
+
+            </div>
+
+            <div class="form-group col-lg-6 offset-lg-3">
+
+                <label for="pass" class="col-sm-4 col-form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="pass" name="pass" autocomplete="off" required>
+
+            </div>
+
+            <div class="container-fluid my-3 text-center">
+
+                <input type="submit" value="Connexion" class="btn btn-outline-dark">
+
+            </div>
+
+        </form>
+
+    </main>
+
+{% endblock %}
+
+{% block footer %}
+
+    <footer class="container-fluid p-4 text-light text-center">
+
+        {{ include ("layouts/footer.twig") }}
+
+    </footer>
+
+{% endblock %}

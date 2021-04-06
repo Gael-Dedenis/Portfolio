@@ -29,7 +29,7 @@
             if (self::$pdo === null)
             {
 
-                    self::$pdo = new PDO(DEV['DB_HOST'], DEV['DB_USER'], DEV['DB_PASS'], DEV['DB_OPTIONS']);
+                    self::$pdo = new PDO(DB_HOST, DB_USER, DB_PASS, DB_OPTIONS);
                     self::$pdo->exec("SET NAMES UTF8");
 
             }

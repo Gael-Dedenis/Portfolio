@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controllers;
+    namespace App\Controllers;
 
-use App\Models\Factory\ModelFactory;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
+    use App\Models\Factory\ModelsFactory;
+    use Twig\Error\LoaderError;
+    use Twig\Error\RuntimeError;
+    use Twig\Error\SyntaxError;
 
-/**
- * Class HomeController
- * appel la page Home
- * @package App\Controllers
- */
-class HomeController extends MainController
-{
+    /**
+     * Class HomeController
+     * appel la page Home
+     * @package App\Controllers
+     */
+    class HomeController extends MainController {
+
     /**
      * Rendu de la vue Home
      * @return string
@@ -22,6 +22,13 @@ class HomeController extends MainController
      * @throws SyntaxError
      */
     public function defaultMethod() {
-        return $this->render("fronts/home.twig");
+        return $this->render("home.twig", ["lastProjects" => $this->getLastProjects()]);
+    }
+
+    /**
+     * @return array|mixed
+     */
+    private function getLastProjects() {
+        return array_reverse(ModelsFactory::getModel("Projects")->listData());
     }
 }

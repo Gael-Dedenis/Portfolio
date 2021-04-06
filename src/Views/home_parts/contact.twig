@@ -1,0 +1,40 @@
+<article id="contact" class="container mt-5 mb-3 rounded border border-3 border-dark bg-light">
+
+    <h2  class="my-3 text-center text-decoration-underline fw-bold">Contact</h2>
+
+    <div class="col-md-8 col-lg-6 mx-auto">
+
+        <form action="{{ url('contact') }}" method="POST">
+
+            <div class="mb-3">
+
+                <label for="nom" class="col-sm-8 col-form-label fw-bold">Votre nom :</label>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label for="mail" class="col-sm-8 col-form-label fw-bold">Votre mail :</label>
+                <input type="mail" class="form-control" id="mail" name="mail" required>
+
+            </div>
+
+            <div>
+
+                <label for="message" class="col-sm-8 col-form-label fw-bold">Votre message :</label>
+                <textarea id="message" class="form-control" name="message" rows="6" cols="120"></textarea>
+
+            </div>
+
+            <div class="container-fluid text-center">
+
+                <button type="submit" class="my-3 btn btn-outline-secondary fw-bold">Envoyer</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</article>

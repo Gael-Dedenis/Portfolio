@@ -6,7 +6,7 @@
 
     /**
      * Class PdoDb
-     * Actions: préparation des Queries avant de les éxécutés et les retournés.
+     * Actions: préparations des Queries avant de les éxécutés et les retournés.
      * @package App\Models
      */
     class PdoDb
