@@ -1,7 +1,7 @@
 {
     "name": "portfolio",
     "description": "Portfolio par Gaël Dedenis",
-    "version": "0.1.3",
+    "version": "0.5.0",
     "license": "MIT",
     "dependencies": {
         "bootstrap": "^5.0.0-beta2",
