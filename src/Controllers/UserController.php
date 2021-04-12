@@ -40,6 +40,8 @@
             if (!empty($this->post)) {
                 if (isset($this->post["mail"])) {
                     $newData["mail"] = $this->post["mail"];
+                    unset($_SESSION["user"]["mail"]);
+                    $_SESSION["user"]["mail"] = $newData["mail"];
                 }
                 if (isset($this->post["oldpass"]) && isset($this->post["pass"]) === isset($this->post["pass_confirm"])) {
                     if (password_verify($this->post["oldpass"], $user["pass"])) {
@@ -47,6 +49,7 @@
                     }
                 }
                 ModelsFactory::getModel("Users")->updateData($this->session["user"]["id"], $newData);
+
                 $this->redirect("admin");
             }
 
