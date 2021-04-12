@@ -38,13 +38,15 @@
          * constructor MainController
          */
         public function __construct(Environment $twig) {
+            parent::__construct();
+
             $this->twig = $twig;
 
             $this->post    = filter_input_array(INPUT_POST);
             $this->get     = filter_input_array(INPUT_GET);
             $this->session = filter_var_array($_SESSION);
 
-            parent::__construct();
+
         }
 
         /**
