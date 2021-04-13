@@ -1,4 +1,4 @@
-<article id="portfolio" class="container my-4 rounded border border-3 border-dark bg-light">
+<article id="portfolio" class="container my-4">
 
     <h2 class="my-5 text-center text-decoration-underline fw-bold">Derniers projets réalisés</h2>
 
@@ -15,24 +15,28 @@
 
         <div class="carousel-inner">
             <div class="carousel-item text-center active">
+                <h3>{{ lastProjects['0'].titre }}</h3>
                 <a href="{{ lastProjects['0'].lien }}" target="_blank">
                     <img src="{{ lastProjects['0'].lien_image }}" alt="{{ lastProjects['0'].description }}" title="{{ lastProjects['0'].description }}">
                 </a>
             </div>
 
             <div class="carousel-item text-center">
+                <h3>{{ lastProjects['1'].titre }}</h3>
                 <a href="{{ lastProjects['1'].lien }}" target="_blank">
                     <img src="{{ lastProjects['1'].lien_image }}" alt="{{ lastProjects['1'].description }}" title="{{ lastProjects['1'].description }}">
                 </a>
             </div>
 
             <div class="carousel-item text-center">
+                <h3>{{ lastProjects['2'].titre }}</h3>
                 <a href="{{ lastProjects['2'].lien }}" target="_blank">
                     <img src="{{ lastProjects['2'].lien_image }}" alt="{{ lastProjects['2'].description }}" title="{{ lastProjects['2'].description }}">
                 </a>
             </div>
 
             <div class="carousel-item text-center" target="_blank">
+                <h3>{{ lastProjects['3'].titre }}</h3>
                 <a href="{{ lastProjects['3'].lien }}">
                     <img src="{{ lastProjects['3'].lien_image }}" alt="{{ lastProjects['3'].description }}" title="{{ lastProjects['3'].description }}">
                 </a>
