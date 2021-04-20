@@ -6,11 +6,17 @@
 
 {% endblock %}
 
+{% block navbar %}
+
+    {{ include ("layouts/navbar.twig") }}
+
+{% endblock %}
+
 {% block header %}
 
-    <header class="my-4">
+    <header class="my-4 bg-dark">
 
-        {{ include ("layouts/navbar.twig") }}
+        <h1 class="py-4 text-light text-center text-decoration-underline fw-bold">Gaël Dedenis</h1>
 
     </header>
 
