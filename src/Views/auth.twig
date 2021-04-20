@@ -4,14 +4,20 @@
     Se connecter au Portfolio de Gaël Dedenis
 {% endblock %}
 
+{% block navbar %}
+
+    <nav class="navbar justify-content-center sticky-top">
+        <a class="nav-link link-light" href="{{ url('home') }}">Accueil</a>
+        <a class="nav-link link-light" href="{{ url('auth') }}">Se connecter</a>
+    </nav>
+
+{% endblock %}
+
 {% block header %}
 
-    <header class="my-4">
+    <header class="my-5">
 
-        <div class="navbar justify-content-center sticky-top">
-            <a class="nav-link link-light" href="{{ url('home') }}">Accueil</a>
-            <a class="nav-link link-light" href="{{ url('auth') }}">Se connecter</a>
-        </div>
+        <h1 class="p-5 text-light text-center text-decoration-underline fw-bold">Se Connecter</h1>
 
     </header>
 
@@ -19,9 +25,7 @@
 
 {% block content %}
 
-    <main class="container p-5 margin-hight rounded bg-light ">
-
-        <h1 class="my-3 text-center text-decoration-underline fw-bold">Se Connecter</h1>
+    <main class="container p-4 margin-hight rounded bg-light ">
 
         {% if erreurs is not empty %}
             <div class="col-lg-6 offset-lg-3 p-2 border border-danger rounded text-danger text-center">
@@ -34,7 +38,7 @@
             <div class="form-group col-lg-6 offset-lg-3">
 
                 <label for="mail" class="col-sm-4 col-form-label">Email</label>
-                <input type="mail" class="form-control" id="mail" name="mail" required>
+                <input type="email" class="form-control" id="mail" name="mail" required>
 
             </div>
 

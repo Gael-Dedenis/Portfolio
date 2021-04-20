@@ -2,7 +2,6 @@
 
     namespace App\Controllers;
 
-    use App\Controllers\FilesController;
     use App\Models\Factory\ModelsFactory;
     use Twig\Error\LoaderError;
     use Twig\Error\RuntimeError;
@@ -59,21 +58,29 @@
          * @throws RuntimeError
          * @throws SyntaxError
          */
-        public function modifyMethod()
-        {
+        public function modifyMethod() {
             if ($this->getUser() === true) {
                 if(!empty($this->post)) {
                     $this->getNewData($this->type = "modify");
-                    ModelsFactory::getModel('Projects')->updateData($this->post["projects_id"], $this->projects);
-                    $this->setImage("../public/images/projets/", $this->post["lien_image"]);
+                    ModelsFactory::getModel("Projects")->updateData($this->post["project_id"], $this->projects);
+
+                    if ($this->post["oldName_image"] !== $this->post["lien_image"]) {
+                        $this->changeNameImage($this->post["oldName_image"], $this->post["lien_image"]);
+                    }
+
+                    if (!empty($_FILES)) {
+                        unlink($this->post["oldName_image"]);
+                        $this->changeImage($this->post["lien_image"]);
+                    }
+
                     $this->redirect("admin");
                 }
-
                 $this->projects["selectedProject"]  = ModelsFactory::getModel("Projects")->readData($this->get["id"]);
 
                 return $this->render("admin_parts/admin_modify.twig", ["projectsToModify" => $this->projects["selectedProject"]]);
             }
             $this->redirect("auth");
+
         }
 
         /**
@@ -82,21 +89,21 @@
          * @return array
          */
         private function getNewData(string $type) {
-
             switch($type) {
                 case "modify":
-                    $this->projects["titre"]       = addslashes($this->post["titre"]);
-                    $this->projects["lien"]        = addslashes($this->post["lien"]);
-                    $this->projects["lien_image"]  = addslashes("../public/images/projets/" . $this->post["lien_image"]);
-                    $this->projects["description"] = addslashes($this->post["description"]);
+
+                    $this->projects["titre"]       = escapeValue($this->post["titre"]);
+                    $this->projects["lien"]        = escapeValue($this->post["lien"]);
+                    $this->projects["lien_image"]  = escapeValue($this->post["lien_image"]);
+                    $this->projects["description"] = escapeValue($this->post["description"]);
                     return $this->projects;
                     break;
 
                 default:
-                    $this->projects["titre"]       = addslashes($this->post["titre"]);
-                    $this->projects["lien"]        = addslashes($this->post["lien"]);
-                    $this->projects["lien_image"]  = addslashes("../public/images/projets/" . $this->post["lien_image"]);
-                    $this->projects["description"] = addslashes($this->post["description"]);
+                    $this->projects["titre"]       = escapeValue($this->post["titre"]);
+                    $this->projects["lien"]        = escapeValue($this->post["lien"]);
+                    $this->projects["lien_image"]  = escapeValue("../public/images/projets/" . $this->post["lien_image"]);
+                    $this->projects["description"] = escapeValue($this->post["description"]);
                     return $this->projects;
             }
         }
@@ -105,8 +112,23 @@
          * @param string $folder
          * @param string $fileName
          */
-        private function setImage(string $folder, string $fileName) {
+        private function setImage(string $folder, string $fileName = null) {
             $this->uploadFile($folder, $fileName);
+        }
+
+        /**
+         * @param string $folder
+         */
+        private function changeImage(string $folder) {
+            $this->changeUploadedFile($folder);
+        }
+
+        /**
+         * @param string $oldName
+         * @param string $newName
+         */
+        private function changeNameImage(string $oldName, string $newName) {
+            rename($oldName, $newName);
         }
 
         /**

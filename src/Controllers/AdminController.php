@@ -24,9 +24,7 @@
                 $this->redirect("auth");
             }
             $allProjects = ModelsFactory::getModel("Projects")->listData();
-            $mailUser    = (string) $this->session["user"]["mail"];
-            $user        = ModelsFactory::getModel("Users")->readData($mailUser, "mail");
 
-            return $this->render("admin.twig", ["projects" => $allProjects, "user" => $user]);
+            return $this->render("admin.twig", ["projects" => $allProjects]);
         }
     }

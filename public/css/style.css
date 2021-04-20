@@ -17,6 +17,10 @@ svg {
   margin-bottom: 5vh;
 }
 
+.d-none {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .margin-hight {
     margin-top: 16vh;
@@ -28,6 +32,10 @@ svg {
   .margin-hight {
     margin-top: 22vh;
     margin-bottom: 18vh;
+  }
+
+  img.admin-img {
+    max-width: 600px;
   }
 }
 

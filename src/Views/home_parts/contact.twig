@@ -1,10 +1,10 @@
-<article id="contact" class="container mt-5 mb-3 rounded border border-3 border-dark bg-light">
+<article id="contact" class="container-fluid mt-5 mb-3 p-3 bg-secondary">
 
     <h2  class="my-3 text-center text-decoration-underline fw-bold">Contact</h2>
 
-    <div class="col-md-8 col-lg-6 mx-auto">
+    <div class="col-md-6 col-lg-4 mx-auto">
 
-        <form action="{{ url('contact') }}" method="POST">
+        <form action="{{ url('contact') }}" method="POST" class="container">
 
             <div class="mb-3">
 
@@ -16,7 +16,7 @@
             <div class="mb-3">
 
                 <label for="mail" class="col-sm-8 col-form-label fw-bold">Votre mail :</label>
-                <input type="mail" class="form-control" id="mail" name="mail" required>
+                <input type="email" class="form-control" id="mail" name="mail" required>
 
             </div>
 
@@ -29,7 +29,7 @@
 
             <div class="container-fluid text-center">
 
-                <button type="submit" class="my-3 btn btn-outline-secondary fw-bold">Envoyer</button>
+                <button type="submit" class="my-3 btn btn-outline-dark fw-bold">Envoyer</button>
 
             </div>
 

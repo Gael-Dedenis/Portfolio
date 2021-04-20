@@ -24,26 +24,53 @@
          * @param string $fileName
          * @return mixed|string 
          */
-        public function uploadFile(string $folder, string $fileName, int $maxSize = 500000) {
-            try {
+        public function uploadFile(string $folder, string $fileName = null, int $maxSize = 500000) {
+
                 if (!isset($this->files) && $this->files["image"]["error"] > 0) {
-                    throw new Exception("Erreur lors du transfert..");
+                    echo "Erreur lors du transferet !";
+                    die;
                 }
 
                 if ($this->files["images"]["size"] > $maxSize) {
-                    throw new Exception("Poids maximum dépassé..");
+                    echo "Erreur le poids de l'image est trop lourd !";
+                    die;
                 }
 
                 if (!move_uploaded_file($this->files["image"]["tmp_name"], $this->setFileName($folder, $fileName))) {
-                    throw new Exception("Erreur lors du déplacement du fichier uploadé..");
+                    echo "Erreur lors du transfert de l'image !";
+                    die;
                 }
 
-            } catch (Exception $e) {
-                return $e->getMessage();
-            }
         }
 
         /**
+         * Action: change l'image utiliser par le projet avec le nom de l'ancienne image.
+         * @param string $folder
+         * @return mixed|string 
+         */
+        public function changeUploadedFile(string $folder, int $maxSize = 500000) {
+
+            if (!isset($this->files) && $this->files["image"]["error"] > 0) {
+                echo "Erreur lors du transfer !";
+                die;
+            }
+
+            if ($this->files["images"]["size"] > $maxSize) {
+                echo "Erreur le poids de l'image est trop lourd !";
+                die;
+            }
+
+            if (!move_uploaded_file($this->files["image"]["tmp_name"], $folder)) {
+                echo "Erreur lors du transfert de l'image !";
+                die;
+            }
+
+    }
+
+        /**
+         * Action: donne le nom du dossier et du fichier.
+         * @param string $folder
+         * @param string|null $fileName
          * @return string
          */
         public function setFileName(string $folder, string $fileName = null) {
@@ -58,30 +85,33 @@
          * @return mixed
          */
         public function checkFileExtension() {
+            $extension = null;
             switch($this->files["image"]["type"]) {
                 case "image/bmp":
-                    return ".bmp";
+                    $extension = (string) ".bmp";
                     break;
 
                 case "image/gif":
-                    return ".gif";
+                    $extension = (string) ".gif";
                     break;
 
                 case "image/jpeg":
-                    return ".jpg";
+                    $extension = (string) ".jpg";
                     break;
 
                 case "image/png":
-                    return ".png";
+                    $extension = (string) ".png";
                     break;
 
                 case "image/webp":
-                    return ".webp";
+                    $extension = (string) ".webp";
                     break;
 
                 default:
-                    return false;
+                    $extension = (string) "erreur";
             }
+
+            return $extension;
         }
 
     }
