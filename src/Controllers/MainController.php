@@ -93,4 +93,11 @@
             }
             return false;
         }
+
+        /**
+         * 
+         */
+        public function escapeValue($value) : string {
+            return addslashes($value);
+        }
     }
