@@ -4,17 +4,23 @@
     Administration
 {% endblock %}
 
-{% block header %}
+{% block navbar %}
 
     {{ include ("layouts/navbar.twig") }}
 
 {% endblock %}
 
+{% block header %}
+
+    <header>
+        <h1 class="mt-3 mb-5 text-light text-center text-decoration-underline fw-bold">Panneau d'administration</h1>
+    </header>
+
+{% endblock %}
+
 {% block content %}
 
-    <main class="container p-4 my-3 rounded bg-light text-dark">
-
-        <h1 class="my-5 text-center text-decoration-underline fw-bold">Panneau d'administration</h1>
+    <main class="container my-3 p-3 rounded bg-light text-dark">
 
         <section class="Container my-3">
 
