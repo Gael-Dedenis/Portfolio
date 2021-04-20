@@ -16,25 +16,18 @@
     class ContactController extends MainController
     {
         /**
-         * @var
-         */
-        private $mail = [];
-
-        /**
          * @return string
          * @throws LoaderError
          * @throws RuntimeError
          * @throws SyntaxError
          */
-        public function defaultMethod()
-        {
+        public function defaultMethod() {
             if (empty($this->post["message"]))
             {
                 $this->redirect("home");
-            } else {
-                $this->sendMethod();
-                $this->redirect("home");
             }
+            $this->sendMethod();
+            $this->redirect("home");
 
         }
 
