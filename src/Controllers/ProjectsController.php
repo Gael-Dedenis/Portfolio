@@ -2,7 +2,6 @@
 
     namespace App\Controllers;
 
-    use App\Controllers\FilesController;
     use App\Models\Factory\ModelsFactory;
     use Twig\Error\LoaderError;
     use Twig\Error\RuntimeError;
@@ -59,30 +58,29 @@
          * @throws RuntimeError
          * @throws SyntaxError
          */
-        public function modifyMethod()
-        {
+        public function modifyMethod() {
             if ($this->getUser() === true) {
-
                 if(!empty($this->post)) {
-                    $this->getNewData($this->type = "modify");                                                   // On récupère les nouvelles infos
-                    ModelsFactory::getModel("Projects")->updateData($this->post["project_id"], $this->projects); // on passe à bd les nouvelles données
+                    $this->getNewData($this->type = "modify");
+                    ModelsFactory::getModel("Projects")->updateData($this->post["project_id"], $this->projects);
 
-                    if ($this->post["oldName_image"] !== $this->post["lien_image"]) {                            // si l'ancien nom et le nouveau sont différent
-                    $this->changeNameImage($this->post["oldName_image"], $this->post["lien_image"]);             // on change l'ancien noms de l'image par le nouveau
+                    if ($this->post["oldName_image"] !== $this->post["lien_image"]) {
+                        $this->changeNameImage($this->post["oldName_image"], $this->post["lien_image"]);
                     }
 
-                    if (!empty($_FILES)) {                                                                       // si il y a une nouvelle image de transférer on l'enregistre et supprime l'ancienne.
+                    if (!empty($_FILES)) {
                         unlink($this->post["oldName_image"]);
                         $this->changeImage($this->post["lien_image"]);
                     }
-                    $this->redirect("admin");                                                                    // on redirige sur l'admin
-                }
 
+                    $this->redirect("admin");
+                }
                 $this->projects["selectedProject"]  = ModelsFactory::getModel("Projects")->readData($this->get["id"]);
 
                 return $this->render("admin_parts/admin_modify.twig", ["projectsToModify" => $this->projects["selectedProject"]]);
             }
             $this->redirect("auth");
+
         }
 
         /**
@@ -91,21 +89,21 @@
          * @return array
          */
         private function getNewData(string $type) {
-
             switch($type) {
                 case "modify":
-                    $this->projects["titre"]       = addslashes($this->post["titre"]);
-                    $this->projects["lien"]        = addslashes($this->post["lien"]);
-                    $this->projects["lien_image"]  = addslashes($this->post["lien_image"]);
-                    $this->projects["description"] = addslashes($this->post["description"]);
+
+                    $this->projects["titre"]       = escapeValue($this->post["titre"]);
+                    $this->projects["lien"]        = escapeValue($this->post["lien"]);
+                    $this->projects["lien_image"]  = escapeValue($this->post["lien_image"]);
+                    $this->projects["description"] = escapeValue($this->post["description"]);
                     return $this->projects;
                     break;
 
                 default:
-                    $this->projects["titre"]       = addslashes($this->post["titre"]);
-                    $this->projects["lien"]        = addslashes($this->post["lien"]);
-                    $this->projects["lien_image"]  = addslashes("../public/images/projets/" . $this->post["lien_image"]);
-                    $this->projects["description"] = addslashes($this->post["description"]);
+                    $this->projects["titre"]       = escapeValue($this->post["titre"]);
+                    $this->projects["lien"]        = escapeValue($this->post["lien"]);
+                    $this->projects["lien_image"]  = escapeValue("../public/images/projets/" . $this->post["lien_image"]);
+                    $this->projects["description"] = escapeValue($this->post["description"]);
                     return $this->projects;
             }
         }
