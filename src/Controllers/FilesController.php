@@ -51,7 +51,7 @@
         public function changeUploadedFile(string $folder, int $maxSize = 500000) {
 
             if (!isset($this->files) && $this->files["image"]["error"] > 0) {
-                echo "Erreur lors du transferet !";
+                echo "Erreur lors du transfer !";
                 die;
             }
 
@@ -85,30 +85,33 @@
          * @return mixed
          */
         public function checkFileExtension() {
+            $extension = null;
             switch($this->files["image"]["type"]) {
                 case "image/bmp":
-                    return ".bmp";
+                    $extension = (string) ".bmp";
                     break;
 
                 case "image/gif":
-                    return ".gif";
+                    $extension = (string) ".gif";
                     break;
 
                 case "image/jpeg":
-                    return ".jpg";
+                    $extension = (string) ".jpg";
                     break;
 
                 case "image/png":
-                    return ".png";
+                    $extension = (string) ".png";
                     break;
 
                 case "image/webp":
-                    return ".webp";
+                    $extension = (string) ".webp";
                     break;
 
                 default:
-                    return false;
+                    $extension = (string) "erreur";
             }
+
+            return $extension;
         }
 
     }
