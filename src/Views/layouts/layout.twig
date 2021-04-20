@@ -43,9 +43,9 @@
 
     <body class="container-fluid p-0 bg-dark">
 
-        <nav class="sticky-top bg-dark">
-            {% block header %}{% endblock %}
-        </nav>
+        {% block navbar %}{% endblock %}
+
+        {% block header %}{% endblock %}
 
         {% block content %}{% endblock %}
 
