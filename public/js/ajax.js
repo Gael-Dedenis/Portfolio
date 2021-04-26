@@ -15,17 +15,17 @@ class Ajax {
         this.callback = callback;
         this.methode  = methode;
 
-        this.runAjax(this.methode);
+        this.runAjax();
     }
 
     // Création d'un appel par la méthode passer en argument
-    runAjax(methode) {
+    runAjax() {
 
-        if(methode === null || methode === "") {
+        if(this.methode === null || this.methode === "") {
             return alert("La méthode est requise pour éxécuter l\'appel Ajax.");
         }
 
-        this.request.open(methode, this.url);
+        this.request.open(this.methode, this.url);
         this.checkStatus();
         this.listenAjax();
         this.request.send();
@@ -40,8 +40,7 @@ class Ajax {
     // Détection Fin de l'appel
     listenLoad() {
         if (this.request.status >= 200 && this.request.status < 400) {
-        this.callback(this.request.responseText);
-
+            this.callback(this.request.responseText);
         } else {
             console.error(this.request.status + " " + this.request.statusText + " " + this.url);
         }
@@ -52,8 +51,8 @@ class Ajax {
     }
 
     checkStatus() {
-        if(this.request.status == 404) 
+        if(this.request.status === 404) {
             throw new Error(this.url + ' replied 404');
+        }
     }
-    
 }
