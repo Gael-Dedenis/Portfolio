@@ -55,7 +55,7 @@
          * @param array $params
          * @return string
          */
-        public function url(string $page, array $params = []) {
+        protected function url(string $page, array $params = []) {
             $params["access"] = $page;
             return "index.php?" . http_build_query($params);
         }
@@ -65,7 +65,7 @@
          * @param string $page
          * @param array $params
          */
-        public function redirect(string $page, array $params = []) {
+        protected function redirect(string $page, array $params = []) {
             header("Location: " . $this->url($page, $params));
             exit;
         }
@@ -79,7 +79,7 @@
          * @throws RuntimeError
          * @throws SyntaxError
          */
-        public function render(string $views, array $params = []) {
+        protected function render(string $views, array $params = []) {
             return $this->twig->render($views, $params);
         }
 
@@ -87,7 +87,7 @@
          * Retourne le status de l'utilisateur
          * @return mixed
          */
-        public function getUser() {
+        protected function getUser() {
             if (isset($this->session) && !empty($this->session["user"])) {
                 return true;
             }
@@ -97,7 +97,7 @@
         /**
          * 
          */
-        public function escapeValue($value) : string {
+        protected function escapeValue($value) : string {
             return addslashes($value);
         }
     }
