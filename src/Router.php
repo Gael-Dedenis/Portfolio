@@ -44,7 +44,7 @@
          * Mise en place de l'environnement twig et de ses composants.
          * @return mixed|void
          */
-        public function setEnvironment() {
+        private function setEnvironment() {
             $this->twig = new Environment(new FilesystemLoader("../src/Views"), array(
                 "cache" => false,
                 'debug' => true
@@ -58,7 +58,7 @@
          * Analyse l'URL pour appeler le controller demander ainsi que la méthode sélectionnée.
          * @return mixed|void
          */
-        public function parseUrl() {
+        private function parseUrl() {
             $access = filter_input(INPUT_GET, "access");
             if (!isset($access)) {
                 $access = "home";
@@ -72,7 +72,7 @@
          * Créer les requêtes vers les controllers.
          * @return mixed|void
          */
-        public function setController() {
+        private function setController() {
             $this->controller = ucfirst(\strtolower($this->controller)) . "Controller";
             $this->controller = DEFAULT_PATH . $this->controller;
 
@@ -85,7 +85,7 @@
          * Créer les requêtes pour les méthodes.
          * @return mixed|void
          */
-        public function setMethod() {
+        private function setMethod() {
             $this->method = strtolower($this->method) . "Method";
 
             if (!method_exists($this->controller, $this->method)) {
