@@ -77,10 +77,12 @@
          * @param string $status
          */
         private function setSession(int $id, string $mail) {
-            $_SESSION["user"] = [
-                "id"     => $id,
-                "mail"  => $mail,
+            $data = [
+                "id"   => $id,
+                "mail" => $mail
             ];
+
+            $this->setSessionData("user", $data);
         }
 
         /**
@@ -91,18 +93,10 @@
          */
         public function logoutMethod() {
             if($this->getUser()) {
-                $this->unsetSession();
+                $this->unsetSessionData("user");
                 $this->redirect("auth");
             }
             $this->redirect("auth");
-
-        }
-
-        /**
-         * @return void
-         */
-        private function unsetSession() {
-            $_SESSION["user"] = [];
         }
 
     }
