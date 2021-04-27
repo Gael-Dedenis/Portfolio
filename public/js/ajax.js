@@ -52,7 +52,7 @@ class Ajax {
 
     checkStatus() {
         if(this.request.status === 404) {
-            throw new Error(this.url + ' replied 404');
+            throw new Error(this.url + " replied 404");
         }
     }
 }
