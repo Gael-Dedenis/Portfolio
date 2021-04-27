@@ -46,7 +46,21 @@
             $this->get     = filter_input_array(INPUT_GET);
             $this->session = filter_var_array($_SESSION);
 
+        }
 
+        /**
+         * @param string $value
+         * @param array $donnees
+         */
+        protected function setSessionData(string $value, array $donnees) {
+            $_SESSION[$value] = $donnees;
+        }
+
+        /**
+         * @param string $value
+         */
+        protected function unsetSessionData(string $value) {
+            $_SESSION[$value] = [];
         }
 
         /**
@@ -95,9 +109,11 @@
         }
 
         /**
-         * 
+         * @param string $value
          */
-        protected function escapeValue($value) : string {
+        protected function escapeValue($value){
             return addslashes($value);
         }
+
+
     }
