@@ -2,6 +2,8 @@
 
     namespace App\Controllers;
 
+    use Exception;
+
     /**
      * Class FilesController
      * @package App\Controllers
@@ -24,48 +26,19 @@
          * @param string $fileName
          * @return mixed|string 
          */
-        public function uploadFile(string $folder, string $fileName = null, int $maxSize = 500000) {
-
-                if (!isset($this->files) && $this->files["image"]["error"] > 0) {
-                    echo "Erreur lors du transferet !";
-                    die;
-                }
-
-                if ($this->files["images"]["size"] > $maxSize) {
-                    echo "Erreur le poids de l'image est trop lourd !";
-                    die;
-                }
-
-                if (!move_uploaded_file($this->files["image"]["tmp_name"], $this->setFileName($folder, $fileName))) {
-                    echo "Erreur lors du transfert de l'image !";
-                    die;
-                }
-
-        }
-
-        /**
-         * Action: change l'image utiliser par le projet avec le nom de l'ancienne image.
-         * @param string $folder
-         * @return mixed|string 
-         */
-        public function changeUploadedFile(string $folder, int $maxSize = 500000) {
-
+        protected function uploadFile(string $folder, string $fileName = null, int $maxSize = 500000) {
             if (!isset($this->files) && $this->files["image"]["error"] > 0) {
-                echo "Erreur lors du transfer !";
-                die;
+                throw new Exception("Erreur lors du transfer !");
             }
 
-            if ($this->files["images"]["size"] > $maxSize) {
-                echo "Erreur le poids de l'image est trop lourd !";
-                die;
+            if ($this->files["image"]["size"] > $maxSize) {
+                throw new Exception("Erreur le poids de l'image est trop lourd !");
             }
 
-            if (!move_uploaded_file($this->files["image"]["tmp_name"], $folder)) {
-                echo "Erreur lors du transfert de l'image !";
-                die;
+            if (!move_uploaded_file($this->files["image"]["tmp_name"], $this->setFileName($folder, $fileName))) {
+                throw new Exception("Erreur lors du transfert de l'image !");
             }
-
-    }
+        }
 
         /**
          * Action: donne le nom du dossier et du fichier.
@@ -73,45 +46,11 @@
          * @param string|null $fileName
          * @return string
          */
-        public function setFileName(string $folder, string $fileName = null) {
-            if ($fileName === null) {
-                return $folder . $this->files["image"]["name"];
+        protected function setFileName(string $folder, string $fileName = "") {
+            if ($fileName !== null && $fileName !== "") {
+                return $folder . $fileName;
             }
-            $newFileName = str_replace(array(".bmp", ".gif", ".jpg", ".png", ".webp"), "", $fileName);
-            return $folder . $newFileName . $this->checkFileExtension();
-        }
-
-        /**
-         * @return mixed
-         */
-        public function checkFileExtension() {
-            $extension = null;
-            switch($this->files["image"]["type"]) {
-                case "image/bmp":
-                    $extension = (string) ".bmp";
-                    break;
-
-                case "image/gif":
-                    $extension = (string) ".gif";
-                    break;
-
-                case "image/jpeg":
-                    $extension = (string) ".jpg";
-                    break;
-
-                case "image/png":
-                    $extension = (string) ".png";
-                    break;
-
-                case "image/webp":
-                    $extension = (string) ".webp";
-                    break;
-
-                default:
-                    $extension = (string) "erreur";
-            }
-
-            return $extension;
+            return $folder . $this->files["image"]["name"];
         }
 
     }

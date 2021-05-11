@@ -46,7 +46,21 @@
             $this->get     = filter_input_array(INPUT_GET);
             $this->session = filter_var_array($_SESSION);
 
+        }
 
+        /**
+         * @param string $value
+         * @param array $donnees
+         */
+        protected function setSessionData(string $value, array $donnees) {
+            $_SESSION[$value] = $donnees;
+        }
+
+        /**
+         * @param string $value
+         */
+        protected function unsetSessionData(string $value) {
+            $_SESSION[$value] = [];
         }
 
         /**
@@ -55,7 +69,7 @@
          * @param array $params
          * @return string
          */
-        public function url(string $page, array $params = []) {
+        protected function url(string $page, array $params = []) {
             $params["access"] = $page;
             return "index.php?" . http_build_query($params);
         }
@@ -65,7 +79,7 @@
          * @param string $page
          * @param array $params
          */
-        public function redirect(string $page, array $params = []) {
+        protected function redirect(string $page, array $params = []) {
             header("Location: " . $this->url($page, $params));
             exit;
         }
@@ -79,7 +93,7 @@
          * @throws RuntimeError
          * @throws SyntaxError
          */
-        public function render(string $views, array $params = []) {
+        protected function render(string $views, array $params = []) {
             return $this->twig->render($views, $params);
         }
 
@@ -87,7 +101,7 @@
          * Retourne le status de l'utilisateur
          * @return mixed
          */
-        public function getUser() {
+        protected function getUser() {
             if (isset($this->session) && !empty($this->session["user"])) {
                 return true;
             }
@@ -95,9 +109,11 @@
         }
 
         /**
-         * 
+         * @param string $value
          */
-        public function escapeValue($value) : string {
+        protected function escapeValue($value){
             return addslashes($value);
         }
+
+
     }
