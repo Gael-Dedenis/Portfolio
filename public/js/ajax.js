@@ -3,25 +3,31 @@
 class Ajax {
     /**
      * @param {string} url
+     * @param {string} method
+     * @param {JSON} data
      */
-    constructor (url) {
-        this.url = url;
+    constructor (url, method, data) {
+        this.method = method;
+        this.url    = url;
+        this.data   = data;
 
-        return new Promise(function (resolve, reject) {
-            const xhr = new XMLHttpRequest();
+        this.setRequest.bind(this.data);
+    }
 
-            // En cas de succès
-            xhr.onload = function () {
-                resolve(this);
-            }
+    async setRequest(data = {}) {
+        this.request = await fetch(this.url, {
+            method: this.method,
+            credentials: "same-origin", //
+            headers: {
+                //"Content-Type": "application/json" //si l'on envoie du JSON
+                "Content-Type": "text/plain;charset=UTF-8"
+            },
+            body: data // body data type doit correspondre au "Content-Type" du headers
+        })
+        .then(response => response.text())
+        .then(response => alert(response))
+        .catch(error => alert("Erreur : " + error));
 
-            // En cas d'échec
-            xhr.onerror = function () {
-                reject(new Error("Erreur pendant l'envoie, réessayer."));
-            };
-
-            xhr.open("POST", this.url, true);
-            xhr.send(null);
-        });
+        //this.result = await response.text();
     }
 }
