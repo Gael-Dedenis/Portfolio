@@ -4,5 +4,5 @@
 window.onload = () => {
 
     // +++++ +++++ Formulaire de contact +++++ +++++
-    let formContact = new FormContact(document.getElementById("contact"));
+    let formContact = new FormContact(document.getElementById("form_contact"));
 };
