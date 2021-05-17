@@ -3,6 +3,19 @@ svg {
   height: 100%;
 }
 
+.img-services {
+  display: none;
+}
+
+section.sections-services::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #f8f9fa;
+  border-radius: 50%;
+  width: 75%;
+}
+
 .carousel-item {
   max-height: 600px;
 }
@@ -26,6 +39,20 @@ svg {
     margin-top: 16vh;
     margin-bottom: 18vh;
   }
+
+  .img-services {
+    display: block;
+  }
+
+  .img-services img {
+    height: auto;
+    max-width: 100px;
+  }
+
+  section.sections-services::after {
+    content: "";
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1920px) {
@@ -36,6 +63,10 @@ svg {
 
   img.admin-img {
     max-width: 600px;
+  }
+
+  .img-services img {
+    max-width: 150px;
   }
 }
 
