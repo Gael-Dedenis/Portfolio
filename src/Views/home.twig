@@ -10,6 +10,39 @@
 
     {{ include ("layouts/navbar.twig") }}
 
+    <div class="modal" id="contactModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header bg-secondary">
+                    <h5 class="modal-title text-light">Formulaire de contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="form_contact" class="container" method="POST" action="{{ url('contact') }}"  enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="nom" class="col-sm-8 col-form-label fw-bold required">Votre nom :</label>
+                            <input type="text" class="form-control" id="nom" name="nom" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mail" class="col-sm-8 col-form-label fw-bold required">Votre mail :</label>
+                            <input type="email" class="form-control" id="mail" name="mail" required>
+                        </div>
+                        <div>
+                            <label for="message" class="col-sm-8 col-form-label fw-bold required">Votre message :</label>
+                            <textarea id="message" class="form-control" name="message" rows="6" cols="120"></textarea>
+                        </div>
+                        <div class="container-fluid text-center">
+                            <button type="submit" class="my-3 btn btn-outline-dark fw-bold">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block header %}
@@ -32,7 +65,7 @@
 
         {{ include ("home_parts/portfolio.twig") }}
 
-        {{ include ("home_parts/contact.twig") }}
+        {# {{ include ("home_parts/contact.twig") }} #}
 
     </main>
 
