@@ -59,6 +59,19 @@
 
     <main class="col-12 bg-light">
 
+        {{ dump(eventContact.success) }}
+
+        {% if eventContact is not empty %}
+            <p class="my-5 p-2 border rounded 
+                      {% if eventContact.success == 'true' %}
+                        border-success text-success
+                      {% else %}
+                        border-danger text-danger
+                      {% endif %}">
+                {{ eventContact.message }}<span class="fas fa-times"></span>
+            </p>
+        {% endif %}
+
         {{ include ("home_parts/accueil.twig") }}
 
         {{ include ("home_parts/services.twig") }}
