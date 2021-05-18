@@ -6,27 +6,16 @@ class Ajax {
      * @param {string} method
      * @param {JSON} data
      */
-    constructor (url, method, data) {
+    constructor (url, method) {
         this.method = method;
         this.url    = url;
-        this.data   = data;
 
-        this.setRequest.bind(this.data);
+        this.setRequest();
     }
 
-    async setRequest(data = {}) {
-        this.request = await fetch(this.url, {
-            method: this.method,
-            credentials: "same-origin", //
-            headers: {
-                //"Content-Type": "application/json" //si l'on envoie du JSON
-                "Content-Type": "text/plain;charset=UTF-8"
-            },
-            body: data // body data type doit correspondre au "Content-Type" du headers
-        })
-        .then(response => response.text())
-        .then(response => alert(response))
-        .catch(error => alert("Erreur : " + error));
+    async setRequest() {
+        this.request = await fetch(this.url, this.method)
+        .then(response => console.log(response)); //response.text()
 
         //this.result = await response.text();
     }
