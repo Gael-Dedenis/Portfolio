@@ -13,7 +13,7 @@ class FormContact {
     // +++++ Ajouts des évènements sur le formulaire de contact
     setContactEvents() {
         this.container.addEventListener("submit", (e) => {
-            this.checkEmptyInput("form_contact", "submit", [
+            this.checkEmptyInput("form_contact", [
                 "nom",
                 "mail",
                 "message",
@@ -23,11 +23,10 @@ class FormContact {
     }
 
     // +++++ +++++ Vérification que les inputs ne sont pas vide.
-    async checkEmptyInput(formId, eventType, inputsId) {
+    async checkEmptyInput(formId, inputsId) {
     const form = document.getElementById(formId);
 
         if (form) {
-            form.addEventListener(eventType, (e) => {
                 inputsId.forEach((inputId) => {
                     const input = document.getElementById(inputId);
                     if(input.nodeValue.trim().length === 0) {
@@ -36,7 +35,6 @@ class FormContact {
                         return alert("Le champ " + inputId + " n\'est pas rempli !");
                     };
                 });
-            });
         }
     }
 }
