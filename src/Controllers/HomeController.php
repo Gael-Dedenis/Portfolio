@@ -29,6 +29,6 @@
      * @return array|mixed
      */
     private function getLastProjects() {
-        return array_reverse(ModelsFactory::getModel("Projects")->listData());
+        return (ModelsFactory::getModel("Projects")->get4LastProjects());
     }
 }
