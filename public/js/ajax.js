@@ -3,20 +3,34 @@
 class Ajax {
     /**
      * @param {string} url
-     * @param {string} method
-     * @param {JSON} data
+     * @param {function} callback
      */
-    constructor (url, method) {
-        this.method = method;
-        this.url    = url;
+    constructor (url) {
+        this.url = url;
 
         this.setRequest();
     }
 
     async setRequest() {
-        this.request = await fetch(this.url, this.method)
-        .then(response => console.log(response)); //response.text()
+        this.request = await fetch(this.url)
+        .then(response => {
+            if (response.ok) {
+                response.json().then(data => {
+                    console.log(data);
 
-        //this.result = await response.text();
+                    let i   = 0;
+                    let nbr = data.length - 4;
+
+                    let projects = {
+                         for (i=0; i<=nbr; i++) {
+                            data[i];
+                        }
+                    }
+                    return projects;
+                })
+            } else {
+                console.error("Erreur !");
+            }
+        })
     }
 }
