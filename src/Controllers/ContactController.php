@@ -27,11 +27,6 @@
          * @throws SyntaxError
          */
         public function defaultMethod() {
-            if (empty($this->post["nom"]) || empty($this->post["mail"]) || empty($this->post["message"]))
-            {
-                $this->redirect("home");
-            }
-
             $this->sendMethod();
             $this->eventMessage["success"] = "true";
             $this->eventMessage["message"] = "Message envoyé !";
