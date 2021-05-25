@@ -27,7 +27,7 @@
          * @throws SyntaxError
          */
         public function defaultMethod() {
-            if (empty($this->post["message"]))
+            if (empty($this->post["nom"]) || empty($this->post["mail"]) || empty($this->post["message"]))
             {
                 $this->redirect("home");
             }
@@ -44,6 +44,12 @@
          */
         private function sendMethod()
         {
+            try {
+                $this->checkForms();
+            } catch(Exception $e) {
+                echo $e->getMessage();
+            }
+
             try {
                 // Création du transport
                 $transport = (new Swift_SmtpTransport())
@@ -71,6 +77,14 @@
                 $this->eventMessage["message"] = "Erreur lors de l'envoi :" . $e;
                 $this->redirect("home", ["eventContact" => $this->eventMessage]);
             }
+        }
 
+        /**
+         * 
+         */
+        private function checkForms() {
+            if (empty(trim($this->post["mail"])) || empty(trim($this->post["mail"])) || empty(trim($this->post["message"]))) {
+                throw new Error("Les champs doivent être remplis !");
+            }
         }
     }
