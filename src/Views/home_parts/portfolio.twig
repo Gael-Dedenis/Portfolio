@@ -2,14 +2,14 @@
 
     <h2 class="my-3 text-decoration-underline fw-bold">Projets réalisés</h2>
 
-    <div class="d-flex flex-row flex-wrap justify-content-evenly align-items-center my-3">
+    <div id="container-portfolio" class="d-flex flex-row flex-wrap justify-content-evenly align-items-center my-3">
 
         {% for project in lastProjects|slice(0,4) %}
 
             <div class="my-3 px-5 text-center project">
-                <h3 class="text-decoration-underline fw-bold">{{ project.titre|e }}</h3>
-                <a href="{{ project.lien|e }}" target="_blank" rel="noreferrer">
-                    <img src="../public/images/projets/{{ project.lien_image|e }}" alt="{{ project.description|e }}" title="{{ project.description|e }}" rel="external">
+                <h3 class="text-decoration-underline fw-bold">{{ project.titre }}</h3>
+                <a href="{{ project.lien }}" target="_blank" rel="noreferrer">
+                    <img src="../public/images/projets/{{ project.lien_image }}" alt="{{ project.description }}" title="{{ project.description }}" rel="external">
                 </a>
             </div>
 
@@ -17,6 +17,6 @@
 
     </div>
 
-    <button type="submit" id="loadmore" class="my-3 btn btn-outline-dark fas fa-plus fa-2x"></button>
+    <button id="loadmore" class="my-3 btn btn-outline-dark fas fa-plus fa-2x"></button>
 
 </article>
