@@ -19,6 +19,6 @@
          * @throws SyntaxError
          */
         public function defaultMethod() {
-            return json_encode(ModelsFactory::getModel("Projects")->listData());
+            return json_encode(array_reverse(ModelsFactory::getModel("Projects")->listData()));
         }
     }
