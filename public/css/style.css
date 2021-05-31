@@ -3,13 +3,28 @@ svg {
   height: 100%;
 }
 
-.carousel-item {
-  max-height: 600px;
+.img-services {
+  display: none;
 }
 
-.carousel-item img {
+section.sections-services::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #f8f9fa;
+  border-radius: 50%;
+  width: 75%;
+}
+
+.project {
+  width: 100%;
+  max-height: 400px;
+}
+
+.project img {
   max-width: 100%;
-  height: 30vh;
+  height: auto;
+  max-height: 300px;
 }
 
 .margin-hight {
@@ -26,6 +41,31 @@ svg {
     margin-top: 16vh;
     margin-bottom: 18vh;
   }
+
+  .img-services {
+    display: block;
+  }
+
+  .img-services img {
+    height: auto;
+    max-width: 100px;
+  }
+
+  section.sections-services::after {
+    content: "";
+    display: none;
+  }
+
+  .project {
+    width: 45%;
+    max-height: 500px;
+  }
+
+  .project img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
 }
 
 @media screen and (min-width: 1920px) {
@@ -36,6 +76,21 @@ svg {
 
   img.admin-img {
     max-width: 600px;
+  }
+
+  .img-services img {
+    max-width: 150px;
+  }
+
+  .project {
+    width: 25%;
+    max-height: 500px;
+  }
+
+  .project img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
   }
 }
 

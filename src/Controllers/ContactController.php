@@ -16,19 +16,21 @@
     class ContactController extends MainController
     {
         /**
+         * @var
+         */
+        protected $eventMessage = [];
+
+        /**
          * @return string
          * @throws LoaderError
          * @throws RuntimeError
          * @throws SyntaxError
          */
         public function defaultMethod() {
-            if (empty($this->post["message"]))
-            {
-                $this->redirect("home");
-            }
             $this->sendMethod();
-            $this->redirect("home");
-
+            $this->eventMessage["success"] = "true";
+            $this->eventMessage["message"] = "Message envoyé !";
+            $this->redirect("home", ["eventContact" => $this->eventMessage]);
         }
 
         /**
@@ -37,26 +39,47 @@
          */
         private function sendMethod()
         {
-            // Création du transport
-            $transport = (new Swift_SmtpTransport())
-                ->setHost(MAIL_HOST)
-                ->setPort(MAIL_PORT)
-                ->setUsername(MAIL_USERNAME)
-                ->setPassword(MAIL_PASS)
-                ;
+            try {
+                $this->checkForms();
+            } catch(Exception $e) {
+                echo $e->getMessage();
+            }
 
-            // Création du mailer utilisant le transport
-            $mailer = new Swift_Mailer($transport);
+            try {
+                // Création du transport
+                $transport = (new Swift_SmtpTransport())
+                    ->setHost(MAIL_HOST)
+                    ->setPort(MAIL_PORT)
+                    ->setUsername(MAIL_USERNAME)
+                    ->setPassword(MAIL_PASS)
+                    ;
 
-            // Création du message
-            $message = (new Swift_Message())
+                // Création du mailer utilisant le transport
+                $mailer = new Swift_Mailer($transport);
 
-                ->setFrom([MAIL_FROM => "Gael Dedenis Portfolio"])
-                ->setTo([MAIL_TO => "J.forteroche", htmlspecialchars($this->post["mail"]) => htmlspecialchars($this->post["nom"])])
-                ->setBody(htmlspecialchars($this->post["message"]))
-                ;
+                // Création du message
+                $message = (new Swift_Message())
 
-            // envoie du mail
-            return $mailer->send($message);
+                    ->setFrom([MAIL_FROM => "Gael Dedenis Portfolio"])
+                    ->setTo([MAIL_TO => "Gael Dedenis - Portfolio", htmlspecialchars($this->post["mail"]) => htmlspecialchars($this->post["nom"])])
+                    ->setBody(htmlspecialchars($this->post["message"]))
+                    ;
+
+                // envoie du mail
+                return $mailer->send($message);
+            } catch (Exception $e) {
+                $this->eventMessage["success"] = "false";
+                $this->eventMessage["message"] = "Erreur lors de l'envoi :" . $e;
+                $this->redirect("home", ["eventContact" => $this->eventMessage]);
+            }
+        }
+
+        /**
+         * 
+         */
+        private function checkForms() {
+            if (empty(trim($this->post["mail"])) || empty(trim($this->post["mail"])) || empty(trim($this->post["message"]))) {
+                throw new Error("Les champs doivent être remplis !");
+            }
         }
     }

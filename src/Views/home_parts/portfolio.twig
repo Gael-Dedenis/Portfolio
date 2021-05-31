@@ -1,63 +1,22 @@
-<article id="portfolio" class="container my-4">
+<article id="portfolio" class="container-fluid my-4 text-center">
 
-    <h2 class="my-5 text-center text-decoration-underline fw-bold">Derniers projets réalisés</h2>
+    <h2 class="my-3 text-decoration-underline fw-bold">Projets réalisés</h2>
 
-    <div id="carouselPortfolio" class="carousel carousel-dark carousel-fade slide my-5" data-bs-ride="carousel">
+    <div id="container-portfolio" class="d-flex flex-row flex-wrap justify-content-evenly align-items-center my-3">
 
-        <div class="carousel-indicators">
+        {% for project in lastProjects|slice(0,4) %}
 
-            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="3" aria-label="Slide 4"></button>
-
-        </div>
-
-        <div class="carousel-inner">
-            <div class="carousel-item text-center active">
-                <h3>{{ lastProjects['0'].titre }}</h3>
-                <a href="{{ lastProjects['0'].lien }}" target="_blank" rel="noreferrer">
-                    <img src="../public/images/projets/{{ lastProjects['0'].lien_image }}" alt="{{ lastProjects['0'].description }}" title="{{ lastProjects['0'].description }}" rel="external">
+            <div class="my-3 px-5 text-center project">
+                <h3 class="text-decoration-underline fw-bold">{{ project.titre }}</h3>
+                <a href="{{ project.lien }}" target="_blank" rel="noreferrer">
+                    <img src="../public/images/projets/{{ project.lien_image }}" alt="{{ project.description }}" title="{{ project.description }}" rel="external">
                 </a>
-                <p class="p-3">{{ lastProjects['0'].description }}</p>
             </div>
 
-            <div class="carousel-item text-center">
-                <h3>{{ lastProjects['1'].titre }}</h3>
-                <a href="{{ lastProjects['1'].lien }}" target="_blank" rel="noreferrer">
-                    <img src="../public/images/projets/{{ lastProjects['1'].lien_image }}" alt="{{ lastProjects['1'].description }}" title="{{ lastProjects['1'].description }}" rel="external">
-                </a>
-                <p class="p-3">{{ lastProjects['1'].description }}</p>
-            </div>
-
-            <div class="carousel-item text-center">
-                <h3>{{ lastProjects['2'].titre }}</h3>
-                <a href="{{ lastProjects['2'].lien }}" target="_blank" rel="noreferrer">
-                    <img src="../public/images/projets/{{ lastProjects['2'].lien_image }}" alt="{{ lastProjects['2'].description }}" title="{{ lastProjects['2'].description }}" rel="external">
-                </a>
-                <p class="p-3">{{ lastProjects['2'].description }}</p>
-            </div>
-
-            <div class="carousel-item text-center">
-                <h3>{{ lastProjects['3'].titre }}</h3>
-                <a href="{{ lastProjects['3'].lien }}" target="_blank" rel="noreferrer">
-                    <img src="../public/images/projets/{{ lastProjects['3'].lien_image }}" alt="{{ lastProjects['3'].description }}" title="{{ lastProjects['3'].description }}" rel="external">
-                </a>
-                <p class="p-3">{{ lastProjects['3'].description }}</p>
-            </div>
-
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPortfolio"  data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselPortfolio"  data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        {% endfor %}
 
     </div>
+
+    <button id="loadmore" class="my-3 btn btn-outline-dark fas fa-plus fa-2x"></button>
 
 </article>
