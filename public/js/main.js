@@ -7,5 +7,5 @@ window.onload = () => {
     let formContact = new FormContact(document.getElementById("form_contact"));
 
     // +++++ +++++ Bouton Loadmore +++++ +++++
-    let buttonLoadmore = new Loadmore(document.getElementById("loadmore"), "https://localhost/portfolio/public/index.php?access=portfolio", "GET");
+    let buttonLoadmore = new Loadmore(document.getElementById("loadmore"), "https://localhost/portfolio/public/index.php?access=portfolio", document.getElementById("container-portfolio"));
 };
