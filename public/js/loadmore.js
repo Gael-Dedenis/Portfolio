@@ -34,7 +34,7 @@ class Loadmore {
                 let i           = 0;
 
                 while (i < allprojects.length) {
-                    this.createElmtPortfolio(allprojects[i]);
+                    this.createEltPortfolio(allprojects[i]);
                     i++;
                 }
 
@@ -45,13 +45,13 @@ class Loadmore {
     /**
      * @param {array} data 
      */
-    createElmtPortfolio(data) {
-        this.projectContainer = this.createElmt("div");
-        this.projectTitle     = this.createElmt("h3");
-        this.projectLink      = this.createElmt("a");
-        this.projectImg       = this.createElmt("img");
+    createEltPortfolio(data) {
+        this.projectContainer = this.createElt("div");
+        this.projectTitle     = this.createElt("h3");
+        this.projectLink      = this.createElt("a");
+        this.projectImg       = this.createElt("img");
 
-        this.setOptionsElmt();
+        this.setOptionsElt();
         this.constructDOM();
         this.setContent(data);
     }
@@ -60,11 +60,11 @@ class Loadmore {
      * @param {string} type 
      * @returns {HTMLElement}
      */
-    createElmt(type) {
+    createElt(type) {
         return document.createElement(type);
     }
 
-    setOptionsElmt() {
+    setOptionsElt() {
         this.projectContainer.classList.add("my-3", "px-5", "text-center", "project", "project-added");
         this.projectTitle.classList.add("text-decoration-underline", "fw-bold");
     }
@@ -97,7 +97,7 @@ class Loadmore {
     }
 
     changeToButtonLess() {
-        this.buttonLess = this.createElmt("button");
+        this.buttonLess = this.createElt("button");
 
         this.button.remove();
         this.buttonLess.setAttribute("id", "lessProject");
