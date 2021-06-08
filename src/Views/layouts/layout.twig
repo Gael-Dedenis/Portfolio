@@ -13,6 +13,10 @@
             {% block title %}{% endblock %}
         </title>
 
+        <link rel="preload" href="../public/node_modules/bootstrap/dist/css/bootstrap.min.css" as="style">
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" as="style">
+        <link rel="preload" href="../public/css/style.css" as="style">
+
         <meta name="description" content="Jeune développeur web, Dedenis Gael je réalises vos intégrations web et mise en place de CMS.">
 
             <!-- .......... Meta OpenGraph ........... -->
@@ -37,8 +41,6 @@
 <!-- CSS only -->
         <link rel="stylesheet" href="../public/node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"> 
         <link rel="stylesheet" href="../public/css/style.css">
 
     </head>
@@ -54,7 +56,7 @@
         {% block footer %}{% endblock %}
 
         <!-- JavaScript Bundle with Popper (Bootstrap5)-->
-        <script src="../public/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script async src="../public/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
         {% block script %}{% endblock %}
 
