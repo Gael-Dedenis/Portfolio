@@ -1,4 +1,4 @@
-{% if session.user.mail == "gaeldedenis01@laposte.net" %}
+{% if session.user.mail is not empty %}
 
     <nav class="navbar justify-content-center sticky-top bg-dark">
         <a class="nav-link link-light" href="{{ url('home') }}">Accueil</a>
