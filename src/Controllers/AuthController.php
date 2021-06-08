@@ -26,7 +26,7 @@
          * @throws SyntaxError
         */
         public function defaultMethod() {
-            if (!$this->getUser()) {
+            if (!$this->getUser() || $this->getUser()=== "false") {
                 if (!empty($this->post["mail"]) && !empty($this->post["pass"])) {
                     $this->authentification();
                 }
@@ -42,7 +42,7 @@
          * @return array
         */
         private function checkLogUser() {
-            $this->user = ModelsFactory::getModel("Users")->readData($this->post["mail"], "mail");
+            $this->user = ModelsFactory::getModel("users")->readData($this->post["mail"], "mail");
 
             if (empty($this->user)) {
                 return false;
@@ -65,7 +65,7 @@
                 $this->user["id"],
                 $this->user["mail"]
             );
-            $this->redirect("home");
+            $this->redirect("admin");
         }
 
 
