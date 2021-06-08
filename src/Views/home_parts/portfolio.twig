@@ -8,8 +8,8 @@
 
             <div class="my-3 px-5 text-center project">
                 <h3 class="text-decoration-underline fw-bold">{{ project.titre }}</h3>
-                <a href="{{ project.lien }}" target="_blank" rel="noreferrer">
-                    <img src="../public/images/projets/{{ project.lien_image }}" alt="{{ project.description }}" title="{{ project.description }}" rel="external">
+                <a href="{{ project.lien }}" target="_blank" rel="noopener noreferrer">
+                    <img src="../public/images/projets/{{ project.lien_image }}" alt="{{ project.description }}" title="{{ project.description }}" width="400" height="225" rel="external">
                 </a>
             </div>
 
@@ -17,6 +17,6 @@
 
     </div>
 
-    <button id="loadmore" class="my-3 btn btn-outline-dark fas fa-plus fa-2x"></button>
+    <button id="loadmore" class="my-3 btn btn-outline-dark fas fa-plus fa-2x" aria-label="Charger plus de projet"></button>
 
 </article>
