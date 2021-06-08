@@ -30,6 +30,7 @@ class Loadmore {
         let newRequest = fetch(this.url)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 let allprojects = data.slice(4);
                 let i           = 0;
 
@@ -85,14 +86,14 @@ class Loadmore {
         Object.assign(this.projectLink, {
             href: data.lien,
             target: "_blank",
-            rel: "noreferrer"
+            rel: "noreferrer noopener"
         });
 
         Object.assign(this.projectImg, {
             src: "images/projets/" + data.lien_image,
             alt: data.description,
             title: data.description,
-            rel: "external"
+            rel: "external noopener"
         });
     }
 
