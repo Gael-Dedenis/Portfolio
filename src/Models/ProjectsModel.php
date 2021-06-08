@@ -12,9 +12,9 @@
         /**
          * requête spéciale pour récuperer uniquement les 4 derniers projets.
          */
-        public function get4LastProjects() {
-            $query = "SELECT * FROM projects ORDER BY id DESC LIMIT 4";
+        public function get4LastProjects(string $value = null) {
+            $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC LIMIT 4";
 
-            return $this->database->getAllData($query);
+            return $this->database->getAllData($query, [$value]);
         }
     }
