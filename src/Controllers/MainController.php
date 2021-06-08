@@ -102,7 +102,7 @@
          * @return mixed
          */
         protected function getUser() {
-            if (isset($this->session) && !empty($this->session["user"])) {
+            if (isset($this->session["user"]) && !empty($this->session["user"])) {
                 return true;
             }
             return false;

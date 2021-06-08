@@ -25,6 +25,7 @@ section.sections-services::after {
   max-width: 100%;
   height: auto;
   max-height: 300px;
+  aspect-ratio: attr(width) / attr(height);
 }
 
 .margin-hight {
@@ -70,6 +71,7 @@ section.sections-services::after {
     max-width: 100%;
     height: auto;
     max-height: 400px;
+    aspect-ratio: attr(width) / attr(height);
   }
 
   .alert-logo {
@@ -95,12 +97,6 @@ section.sections-services::after {
   .project {
     width: 25%;
     max-height: 500px;
-  }
-
-  .project img {
-    max-width: 100%;
-    height: auto;
-    max-height: 400px;
   }
 }
 
