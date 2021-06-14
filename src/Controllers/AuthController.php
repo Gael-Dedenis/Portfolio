@@ -65,6 +65,7 @@
                 $this->user["id"],
                 $this->user["mail"]
             );
+
             $this->redirect("admin");
         }
 
@@ -82,7 +83,7 @@
                 "mail" => $mail
             ];
 
-            $this->setSessionData("user", $data);
+            return $this->setSessionData("user", $data);
         }
 
         /**
