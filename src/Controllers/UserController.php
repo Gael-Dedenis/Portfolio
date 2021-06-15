@@ -35,14 +35,15 @@
                 $this->redirect("auth");
             }
 
-            $user    = ModelsFactory::getModel("Users")->readData($this->session["user"]["id"]);
-            $newData = [];
+            $this->user    = ModelsFactory::getModel("Users")->readData($this->session["user"]["id"]);
+            $this->newData = [];
 
             if (!empty($this->post)) {
-                $newData["mail"] = $this->changeMail();
-                $newData["pass"] = $this->changePassword();
 
-                $this->setNewData($newData);
+                $this->newData["mail"] = $this->changeMail();
+                $this->newData["pass"] = $this->changePassword();
+
+                $this->setNewData();
 
                 $this->redirect("admin");
             }
@@ -54,7 +55,7 @@
          * @return string
          */
         private function changeMail() {
-            if (isset($this->post["mail"])) {
+            if (isset($this->post["mail"]) && !empty($this->post["mail"])) {
                 unset($_SESSION["user"]["mail"]);
                 $_SESSION["user"]["mail"] = $this->post["mail"];
 
@@ -67,8 +68,8 @@
          * @return string
          */
         private function changePassword() {
-            if (isset($this->post["oldpass"]) && isset($this->post["pass"]) === isset($this->post["pass_confirm"])) {
-                if (password_verify($this->post["oldpass"], $user["pass"])) {
+            if (!empty($this->post["oldpass"]) && $this->post["pass"] === $this->post["pass_confirm"]) {
+                if (password_verify($this->post["oldpass"], $this->user["pass"])) {
                     return password_hash ($this->post["pass"], PASSWORD_DEFAULT);
                 }
             }
@@ -77,18 +78,18 @@
         /**
          * Action: modifie les données dans la bdd en fonction du type passé (mail ou pass).
          */
-        private function setNewData($newData) {
+        private function setNewData() {
             $typeOfData = "";
             $dataToChange = [];
 
-            if(!empty($newData["mail"])) {
+            if(!empty($this->newData["mail"])) {
                 $typeOfData           = "mail";
-                $dataToChange["mail"] = $newData["mail"];
+                $dataToChange["mail"] = $this->newData["mail"];
             }
 
-            if(!empty($newData["pass"])) {
+            if(!empty($this->newData["pass"])) {
                 $typeOfData           = "pass";
-                $dataToChange["pass"] = $newData["pass"];
+                $dataToChange["pass"] = $this->newData["pass"];
             }
 
             switch ($typeOfData) {

@@ -30,7 +30,6 @@ class Loadmore {
         let newRequest = fetch(this.url)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 let allprojects = data.slice(4);
                 let i           = 0;
 
@@ -81,7 +80,7 @@ class Loadmore {
      * @param {array} data 
      */
     setContent(data) {
-        this.projectTitle.innerHTML = data.titre;
+        this.projectTitle.textContent = data.titre;
 
         Object.assign(this.projectLink, {
             href: data.lien,

@@ -101,6 +101,6 @@
             $this->controller = new $this->controller($this->twig);
             $response         = call_user_func([$this->controller, $this->method]);
 
-            echo filter_var($response);
+            print_r(filter_var($response));
         }
     }
