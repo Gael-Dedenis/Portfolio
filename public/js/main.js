@@ -4,6 +4,6 @@
 window.onload = () => {
 
     // +++++ +++++ Bouton Loadmore +++++ +++++
-    new Loadmore(document.getElementById("loadmore"), "https://localhost/portfolio/public/index.php?access=portfolio", document.getElementById("container-portfolio"));
+    let button_Loadmore = new Loadmore(document.getElementById("loadmore"), "https://localhost/portfolio/public/index.php?access=portfolio", document.getElementById("container-portfolio"));
 
 };
