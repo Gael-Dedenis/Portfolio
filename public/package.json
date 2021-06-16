@@ -1,7 +1,7 @@
 {
     "name": "portfolio",
     "description": "Portfolio par Gaël Dedenis",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "license": "MIT",
     "dependencies": {
         "@popperjs/core": "^2.9.2",
