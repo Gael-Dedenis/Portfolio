@@ -22,6 +22,8 @@
      * @throws SyntaxError
      */
     public function defaultMethod() {
+        $this->unsetSessionData("erreur");
+
         return $this->render("home.twig", ["lastProjects" => $this->getLastProjects()]);
     }
 
