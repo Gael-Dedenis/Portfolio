@@ -21,25 +21,29 @@
 
                 <div class="modal-body">
 
-                    <form id="form_contact" class="container" method="POST" action="{{ url('contact') }}"  enctype="multipart/form-data">
+                    <form id="form_contact" class="container" method="POST" action="{{ url('contact') }}" enctype="multipart/form-data" novalidate>
                         <div class="mb-3">
                             <label for="nom" class="col-sm-8 col-form-label fw-bold required">Nom :</label>
                             <input type="text" class="form-control" id="nom" name="nom" required>
+                            <span class="invalid-feedback">Merci de renseigner un nom valide !</span>
                         </div>
                         <div class="mb-3">
                             <label for="mail" class="col-sm-8 col-form-label fw-bold required">Email :</label>
                             <input type="email" class="form-control" id="mail" name="mail" required>
+                            <span class="invalid-feedback">Merci de renseigner un mail valide !</span>
                         </div>
                         <div class="mb-3">
                             <label for="subject" class="col-sm-8 col-form-label fw-bold required">Sujet :</label>
                             <input type="text" class="form-control" id="subject" name="subject" required>
+                            <span class="invalid-feedback">Merci de renseigner un sujet valide !</span>
                         </div>
                         <div>
                             <label for="message" class="col-sm-8 col-form-label fw-bold required">Message :</label>
                             <textarea id="message" class="form-control" name="message" rows="6" cols="120" required></textarea>
+                            <span class="invalid-feedback">Merci de renseigner un message valide !</span>
                         </div>
                         <div class="container-fluid text-center">
-                            <button id="submit-Contact" type="submit" class="my-3 btn btn-outline-dark fw-bold">Envoyer</button>
+                            <input type="submit" class="my-3 btn btn-outline-dark fw-bold" value="Envoyer">
                         </div>
                     </form>
 
@@ -123,6 +127,7 @@
 
 {% block script %}
 
+    <script async src="../public/js/checkForms.js"></script>
     <script async src="../public/js/loadmore.js"></script>
     <script async src="../public/js/main.js"></script>
 
